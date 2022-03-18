@@ -9,7 +9,7 @@ import Notification from './components/Notification';
 import { notificationPopup } from './components/Helpers';
 
 
-const words = ['android', 'java', 'python', 'php', 'dotnet', 'javascript'];
+const words = ['aravind'];
 let selectedWord = words[Math.floor(Math.random() * words.length)];
 function App() {
   const [playable, setPlayable] = useState(true)
