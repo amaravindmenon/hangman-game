@@ -51,6 +51,25 @@ function App() {
     selectedWord = words[random]
   }
 
+  function handleGuess(e) {
+    let letter = e.target.value;
+    console.log(letter);
+    if (selectedWord.includes(letter)) {
+      if (!correctLetters.includes(letter)) {
+        setCorrectLetters(curr => [...curr, letter])
+      } else {
+        notificationPopup(setShowNotification)
+      }
+    } else {
+      if (!wrongLetters.includes(letter)) {
+        setWrongLetters(curr => [...curr, letter])
+      } else {
+        //TODO - show notification for duplicate
+      }
+    }
+
+  }
+
   return (
     <div className="App">
       <Header />
@@ -61,6 +80,19 @@ function App() {
       </div>
       <Popup selectedWord={selectedWord} wrongLetters={wrongLetters} correctLetters={correctLetters} setPlayable={setPlayable} playAgain={playAgain} />
       <Notification showNotification={showNotification} />
+      <div className='buttons'>
+        {"abcdefghjklmnopqrstuvwxyz".split("").map(letter => (
+          <button
+            className='btn'
+            key={letter}
+            value={letter}
+            onClick={handleGuess}
+          // disabled={this.state.guessed.has(letter)}
+          >
+            {letter}
+          </button>
+        ))}
+      </div>
     </div>
 
   );
